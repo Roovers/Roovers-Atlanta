@@ -180,7 +180,18 @@ a.nav-link:hover{
   border-radius: 5px;
   margin-left: 15px;
 }
-
+.borrar-carrito{
+  text-decoration: none;
+  color:white;
+  font-size: 20px;
+  background-color: rgba(255, 0, 0, 0.566);
+  border-radius: 10px;
+  padding: 15px;
+}
+.borrar-carrito:hover{
+  color:white;
+  padding: 18px;
+}
 .carousel-item h5{
   font-family: 'Quicksand', sans-serif;
   letter-spacing: 5px;

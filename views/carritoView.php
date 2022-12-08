@@ -7,10 +7,13 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="stylesheet" href="../assets/css/denegado.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Atlanta Shop</title>
 </head>
@@ -66,36 +69,55 @@
 
 
                     <?php 
+
+
+                    if( empty($carrito) ){
+                      echo "<div class='cardd text-center'>
+                        <div class='card-bodyy'>
+                          <h3 class='cardd-text'>No tienes productos en el carrito.</br></h3>
+                          <p></p>
+                        </div>
+                      </div>";
+                    } else{
+                      
                         foreach($carrito as $producto){
-
-
                             $img = $producto['Img'];
                             $nombre = $producto['nombre_producto'];
                             $precio = $producto['Precio'];
                             $descripcion = $producto['Descripcion'];
+                            $cantidad = $producto['cantidad'];
+                            $idProducto = $producto['fk_producto'];
+                            $idCarrito = $producto['fk_carrito'];
                             echo "
                             <div class='row mb-3'>
                             <div class='col'>
                             <img src='../$img' style='width: 160px; height: 150px;'>  
                             </div>
                             <div class='col'>
-                            <h5 class='text-white'>$nombre</h5>
-                            <p  style='color:#D8D8D8;'>$descripcion</p>
+                            <h5 class='text-white ml-3'>$nombre</h5>
+                            <p  style='color:#D8D8D8;' class='ml-3'>$descripcion</p>
+                            <p  style='color:#D8D8D8;'class='ml-3'>Cantidad: $cantidad</p>
                             </div>
                             <div class='col'>
-                            <h5 class='text-white'>$$precio</h5>
+                            <h5 class='text-white ml-3' >Precio: $$precio</h5>
                             </div>
+                            <div class='col'>
+                            <a href='./borrar?id=$idProducto&carrito=$idCarrito' class='borrar-carrito'><i class='fa-solid fa-trash'></i></a>  
                             </div>
-                                                 
+                            </div>                                            
                             ";
+                            
                         }
-
+                    
+                      }
 
                         $total = 0;
                         
                         foreach ($carrito as $producto) {
                             $precio = $producto['Precio'];
-                            $total = $total + $precio;
+                            $cantidad = $producto['cantidad'];
+                            $precioFinal = $precio * $cantidad;
+                            $total = $total + $precioFinal;
                         }
 
                         echo "

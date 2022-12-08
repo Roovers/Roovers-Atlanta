@@ -25,6 +25,15 @@
             $model->agregarAlCarrito($idProducto, $idCarrito );
             header("Location:./ver");
         }
+
+        public function borrar(){
+        $idProducto = $_GET['id'];
+        $carrito =  $_GET['carrito'];
+        $model = new CarritoModel();
+        $model->borrarProductoCarrito($idProducto, $carrito);
+        header("Location:./ver");
+        }
+
     }
 
 
