@@ -2,6 +2,7 @@
 
    
     require_once('models/productoModel.php');
+    require_once('models/carritoModel.php');
 
 
     class TiendaController{
@@ -10,16 +11,18 @@
             session_start();
             $categoria= $_GET['cat'];
 
-             require_once('views/header.php');
 
             if ( isset( $_SESSION['email'] )) {
 
-                
-                $model = new  ProductoModel();
+                $tiendaModel = new  ProductoModel();
+                $carritoModel= new CarritoModel();
 
-                $listaProductos = $model->listarProductos($categoria);
-            
+                $listaProductos = $tiendaModel->listarProductos($categoria);
+        
                 $email = $_SESSION['email'];
+                $cantidadEnCarrito = $carritoModel->contarCarrito($email);
+                
+                require_once('views/header.php');
 
                 require_once('views/tiendaView.php');
 

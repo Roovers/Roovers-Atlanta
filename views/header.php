@@ -35,7 +35,10 @@
                 </div>
               </li>
                 <li class="nav-item">
-                    <a href="./carrito/ver" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="./carrito/ver" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i><span class="badge bg-success"><?php 
+                    if($cantidadEnCarrito> 0){echo $cantidadEnCarrito;}
+                    
+                    ?></span></a>
                 </li>
             </ul>
           </div>

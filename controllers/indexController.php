@@ -1,9 +1,15 @@
 <?php
+    require_once('models/carritoModel.php');
+
     class indexController{
 
         public function index(){
             session_start();
-
+            require_once('models/carritoModel.php');
+            $model = new CarritoModel();
+            $email = $_SESSION['email'];
+            $carrito = $model->VerCarrito($email);
+            $cantidad = $model->contarCarrito($email);
             // require_once('views/header.php');
             require_once('views/index.php');
             // require_once('views/footer.php');

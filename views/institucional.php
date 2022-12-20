@@ -63,7 +63,7 @@
                 </div>
               </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="./carrito/ver" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i><span class="badge bg-success"><?php echo $cantidad;?></span></a>
                 </li>
             </ul>
           </div>

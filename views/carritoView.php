@@ -27,7 +27,7 @@
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link text-white" href="index">INICIO</a>
+                <a class="nav-link text-white" href="../index">INICIO</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="../noticia">NOTICIAS</a>
@@ -36,7 +36,7 @@
                 <a class="nav-link text-white" href="../tienda?cat=todos">TIENDA</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="../views/institucional.php">INSTITUCIONAL</a>
+                <a class="nav-link text-white" href="../institucional">INSTITUCIONAL</a>
               </li>
               </ul>
             <ul class="navbar-nav">
@@ -53,7 +53,7 @@
                 </div>
               </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i><span class="badge bg-success"><?php echo $cantidad;?></span></a>
                 </li>
             </ul>
           </div>
@@ -64,9 +64,14 @@
             <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
-                <h1 class="text-center text-white">Ver Carrito</h1>
+                <h1 class="text-center text-white mt-4">Ver Carrito</h1>
                 <div class="row mt-4 mb-5">
-
+                  
+                    <div class="row">
+                    <div class="col-lg-6">
+                <a class="btn btn-danger btn-sm mb-3" href="./vaciar?email=<?php echo $email ?>">Vaciar carrito</a>
+                </div>
+              </div>
 
                     <?php 
 
@@ -74,7 +79,7 @@
                     if( empty($carrito) ){
                       echo "<div class='cardd text-center'>
                         <div class='card-bodyy'>
-                          <h3 class='cardd-text'>No tienes productos en el carrito.</br></h3>
+                          <h3 class='cardd-text mt-5'>No tienes productos en el carrito.</br></h3>
                           <p></p>
                         </div>
                       </div>";
@@ -123,7 +128,14 @@
                         echo "
                         <div class='row'>
                         <div class='col d-flex justify-content-end'>
+                        <div class='row'>
+                        <div class='col'>
+                        <p class='text-white'><strong>CANTIDAD TOTAL DE PRODUCTOS: $cantidad</strong></p>
+                        </div>
+                        <div class='col'>
                         <h3 class='text-white'>TOTAL: $$total</h3>
+                        </div>
+                        </div>
                         </div>
                         </div>   
                         "

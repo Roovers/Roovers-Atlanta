@@ -17,7 +17,7 @@
         }
         
         public function encontrarIdCarrito($email){
-            $this->setQuery("SELECT * FROM carrito WHERE fk_user = '$email';
+            $this->setQuery("SELECT id_carrito FROM carrito WHERE fk_user = '$email';
             ");
                     $resultado = $this->obtenerRow();
                     return $resultado;
@@ -26,6 +26,7 @@
         public function verSiExisteEnCarrito($id_producto, $id_carrito){
             $this->setQuery("SELECT fk_producto FROM producto_en_carrito pc INNER JOIN carrito c ON pc.fk_carrito = c.id_carrito INNER JOIN producto p ON pc.fk_producto = p.idProducto WHERE pc.fk_producto = $id_producto AND c.id_carrito = $id_carrito;
             ");
+            
                     $resultado = $this->obtenerRow();
                     return $resultado;
         }
@@ -35,7 +36,7 @@
 
                $existe =  $this->verSiExisteEnCarrito($id_producto, $id_carrito);
                 if(empty($existe)){
-                    $this->setQuery("INSERT INTO producto_en_carrito(fk_producto,cantidad, fk_carrito) VALUES (:fk_producto, :cantidad, :fk_carrito)");
+                    $this->setQuery("INSERT INTO producto_en_carrito(fk_producto,cantidad, fk_carrito) VALUES (:fk_producto, :cantidad, :fk_carrito);");
                     $this->ejecutar(array(
                             ':fk_producto' => $id_producto,
                             ':cantidad'=> 1,
@@ -57,7 +58,28 @@
                     ':fk_producto' => $id_producto,
                     ':fk_carrito' => $id_carrito
             ));
-        }     
+        }   
+        
+        public function contarCarrito($email){
+          
+            $carrito = $this->VerCarrito($email);
+            $cantidad = sizeof($this->VerCarrito($email));
+            $totalCount = 0;
 
+            foreach ($carrito as $productoEnCarrito) { 
+                $totalCount += $productoEnCarrito['cantidad'];
+            }
+            
+            return $totalCount;
+        }
+        public function vaciarCarrito($email){
+            $idCarrito = $this->encontrarIdCarrito($email);
+            $this->setQuery("DELETE FROM producto_en_carrito WHERE fk_carrito = :fk_carrito;");
+
+            $this->ejecutar(array(
+                    ':fk_carrito' => $idCarrito[0]['id_carrito']
+            ));
+        }
     }
+
 ?>

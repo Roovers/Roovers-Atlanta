@@ -11,9 +11,13 @@
             session_start();
             $noticia = new NoticiaModel();
             $listaNoticias = $noticia->lista();
-            // require_once('views/header.php');
+            // require_once('views/header.php');           
+            require_once('models/carritoModel.php');
+            $model = new CarritoModel();
+            $email = $_SESSION['email'];
+            $carrito = $model->VerCarrito($email);
+            $cantidad = $model->contarCarrito($email);
             require_once('views/noticiasView.php');
-            // require_once('views/footer.php');
 
         }
 

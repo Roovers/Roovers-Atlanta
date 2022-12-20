@@ -25,7 +25,7 @@
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link text-white" href="index">INICIO</a>
+                <a class="nav-link text-white" href="./index">INICIO</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="./noticia">NOTICIAS</a>
@@ -51,7 +51,7 @@
                 </div>
               </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="./carrito/ver" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i><span class="badge bg-success"><?php echo $cantidad;?></span></a>
                 </li>
             </ul>
           </div>

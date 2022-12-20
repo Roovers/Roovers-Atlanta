@@ -9,7 +9,7 @@
             $model = new CarritoModel();
             $email = $_SESSION['email'];
             $carrito = $model->VerCarrito($email);
-        
+            $cantidad = $model->contarCarrito($email);
             require_once('views/carritoView.php');
         }
         
@@ -33,8 +33,17 @@
         $model->borrarProductoCarrito($idProducto, $carrito);
         header("Location:./ver");
         }
+        public function vaciar(){
+            $email = $_GET['email'];
+            $model = new CarritoModel();
 
+            $model->vaciarCarrito($email);
+            header("Location:./ver");
+
+        }
     }
+
+  
 
 
 ?>
