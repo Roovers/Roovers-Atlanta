@@ -5,6 +5,7 @@
 
         public function index(){
             session_start();
+            if(isset($_SESSION['email'])){
             require_once('models/carritoModel.php');
             $model = new CarritoModel();
             $email = $_SESSION['email'];
@@ -12,6 +13,9 @@
             $cantidad = $model->contarCarrito($email);
             // require_once('views/header.php');
             require_once('views/index.php');
+            } else {
+                header("Location:./usuario");
+            }
             // require_once('views/footer.php');
         }
         public function institucional(){
